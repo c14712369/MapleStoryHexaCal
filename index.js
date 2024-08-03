@@ -144,7 +144,7 @@ let publicSumNeed = 6268;
 
 // 碎片所需數量
 let totalNeed = skillSumNeed + jintonSumNeed * 2 + strongSumNeed * 4 + publicSumNeed;
-document.getElementById("onePersentNeed").innerHTML = totalNeed * 0.01;
+document.getElementById("onePersentNeed").innerHTML = Math.round(totalNeed * 0.01);
 
 function calculate() {
     // 計算起源
