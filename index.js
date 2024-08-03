@@ -227,11 +227,13 @@ function calculate() {
     document.getElementById("public1Sum").innerHTML = public1Res;
     document.getElementById("public1Need").innerHTML = publicSumNeed - public1Res;
 
-    // 計算總消耗、還需
+    // 計算總消耗、還需碎片量
     let totalUse = skillRes + jinton1Res + jinton2Res + strong1Res + strong2Res + strong3Res + strong4Res + public1Res;
     document.getElementById("totalUsed").innerHTML = totalUse;
     document.getElementById("totalNeed").innerHTML = totalNeed - totalUse;
-    document.getElementById("totalPersent").innerHTML = (totalUse / totalNeed * 100).toFixed(2);
+
+    // 更新進度條
+    updateProgress(totalUse)
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -248,3 +250,17 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+function updateProgress(currentValue) {
+    const progressElement = document.getElementById('vvv');
+    const percentElement = document.getElementById('totalPersent');
+
+    // 設置 progress 元素的 value
+    progressElement.value = currentValue;
+
+    // 計算百分比
+    const percent = (currentValue / totalNeed) * 100;
+
+    // 更新百分比顯示
+    percentElement.textContent = percent.toFixed(2); // 保留兩位小數
+}
