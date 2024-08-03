@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+    <div class="BigCon">
+        <div class="SmallCon">
+            <label><span class="red-text">起源</span>核心：等級</label>
+            <input id="skillInput" type="number" min="1" value="1"><br>
+            <label>消耗碎片數量：</label>
+            <span id="skillSum"></span>
+            <label><br>距離滿等還缺：</label>
+            <span id="skillNeed"></span><label>個碎片</label><br>
+        </div>
+        <div class="SmallCon">
+            <label><span class="red-text">精通</span>核心1：等級</label>
+            <input id="jinton1Input" type="number" min="0" value="0"><br>
+            <label>消耗碎片數量：</label>
+            <span id="jinton1Sum"></span>
+            <label><br>距離滿等還缺：</label>
+            <span id="jinton1Need"></span><label>個碎片</label><br>
+        </div>
+        <div class="SmallCon">
+            <label><span class="red-text">精通</span>核心2：等級</label>
+            <input id="jinton2Input" type="number" min="0" value="0"><br>
+            <label>消耗碎片數量：</label>
+            <span id="jinton2Sum"></span>
+            <label><br>距離滿等還缺：</label>
+            <span id="jinton2Need"></span><label>個碎片</label><br>
+        </div>
+        <div class="SmallCon">
+            <label><span class="red-text">強化</span>核心1：等級</label>
+            <input id="strong1Input" type="number" min="0" value="0"><br>
+            <label>消耗碎片數量：</label>
+            <span id="strong1Sum"></span>
+            <label><br>距離滿等還缺：</label>
+            <span id="strong1Need"></span><label>個碎片</label><br>
+        </div>
+        <div class="SmallCon">
+            <label><span class="red-text">強化</span>核心2：等級</label>
+            <input id="strong2Input" type="number" min="0" value="0"><br>
+            <label>消耗碎片數量：</label>
+            <span id="strong2Sum"></span>
+            <label><br>距離滿等還缺：</label>
+            <span id="strong2Need"></span><label>個碎片</label><br>
+        </div>
+        <div class="SmallCon">
+            <label><span class="red-text">強化</span>核心3：等級</label>
+            <input id="strong3Input" type="number" min="0" value="0"><br>
+            <label>消耗碎片數量：</label>
+            <span id="strong3Sum"></span>
+            <label><br>距離滿等還缺：</label>
+            <span id="strong3Need"></span><label>個碎片</label><br>
+        </div>
+        <div class="SmallCon">
+            <label><span class="red-text">強化</span>核心4：等級</label>
+            <input id="strong4Input" type="number" min="0" value="0"><br>
+            <label>消耗碎片數量：</label>
+            <span id="strong4Sum"></span>
+            <label><br>距離滿等還缺：</label>
+            <span id="strong4Need"></span><label>個碎片</label><br>
+        </div>
+        <div class="SmallCon">
+            <label><span class="red-text">共用</span>核心1：等級</label>
+            <input id="public1Input" type="number" min="0" value="0"><br>
+            <label>消耗碎片數量：</label>
+            <span id="public1Sum"></span>
+            <label><br>距離滿等還缺：</label>
+            <span id="public1Need"></span><label>個碎片</label><br>
+        </div>
+
+        <div class="SmallCon">
+        </div>
+
+        <div class="bottom">
+            <button onclick="calculate()">計算</button>
+            <div style="margin-bottom: 10px;">
+                <label>碎片進度：</label>
+                <progress max="20184" value="0" id="vvv"></progress>
+                <span id="totalPersent" class="red-text"></span><label>%</label>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label>碎片總消耗量：</label>
+                <span id="totalUsed" class="red-text"></span><label>個</label>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label>還需碎片數量：</label>
+                <span id="totalNeed"></span><label>個</label><br>
+            </div>
+            <div>
+                <label><span class="red-text">進度1%</span>所需碎片數量：</label>
+                <span id="onePersentNeed" class="red-text"></span><label>個</label><br>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

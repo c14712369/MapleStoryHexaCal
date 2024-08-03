@@ -1,0 +1,52 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.BigCon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #EEEDEB;
+    border-radius: 8px;
+}
+
+.SmallCon {
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    line-height: 25px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    margin-left: 10px;
+}
+
+progress {
+    width: 210px;
+}
+
+.red-text {
+    color: red;
+    font-weight: bold;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom button {
+    margin-bottom: 10px;
+}
+
+.bottom label {
+    margin-bottom: 10px;
+}
