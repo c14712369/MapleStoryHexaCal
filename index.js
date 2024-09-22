@@ -143,10 +143,12 @@ let publicList = [
 let publicSumNeed = 6268;
 
 // 碎片所需數量
-let totalNeed = skillSumNeed + jintonSumNeed * 2 + strongSumNeed * 4 + publicSumNeed;
-document.getElementById("onePersentNeed").innerHTML = Math.round(totalNeed * 0.01);
+let totalNeed = skillSumNeed + jintonSumNeed * 2 + strongSumNeed * 4;
 
-function calculate() {
+// 是否納入亞努斯
+let anusCheck = document.getElementById("anusCheck");
+
+function calculate(e) {
     // 計算起源
     let skill = document.getElementById('skillInput').value;
     let skillRes = 0;
@@ -228,12 +230,28 @@ function calculate() {
     document.getElementById("public1Need").innerHTML = publicSumNeed - public1Res;
 
     // 計算總消耗、還需碎片量
-    let totalUse = skillRes + jinton1Res + jinton2Res + strong1Res + strong2Res + strong3Res + strong4Res + public1Res;
+    let totalUse = skillRes + jinton1Res + jinton2Res + strong1Res + strong2Res + strong3Res + strong4Res;
+
+    // 進度1%所需碎片數量
+    document.getElementById("onePersentNeed").innerHTML = Math.round(totalNeed * 0.01);
+
+    // 如果套用亞努斯
+    if (anusCheck.checked) {
+        totalUse += public1Res;
+        totalNeed += publicSumNeed;
+        document.getElementById("onePersentNeed").innerHTML = Math.round(totalNeed * 0.01);
+    }
+
     document.getElementById("totalUsed").innerHTML = totalUse;
     document.getElementById("totalNeed").innerHTML = totalNeed - totalUse;
 
     // 更新進度條
     updateProgress(totalUse)
+
+    const inputs = document.querySelectorAll('input[type="number"]');
+    inputs.forEach(input => {
+        localStorage.setItem(input.id, input.value);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -263,4 +281,21 @@ function updateProgress(currentValue) {
 
     // 更新百分比顯示
     percentElement.textContent = percent.toFixed(2); // 保留兩位小數
+}
+
+// 在頁面加載時執行
+window.onload = function () {
+    loadData();
+};
+
+
+// 從 localStorage 加載數據
+function loadData() {
+    const inputs = document.querySelectorAll('input[type="number"]');
+    inputs.forEach(input => {
+        const savedValue = localStorage.getItem(input.id);
+        if (savedValue) {
+            input.value = savedValue;
+        }
+    });
 }
