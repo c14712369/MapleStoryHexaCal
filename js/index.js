@@ -350,6 +350,9 @@ function calculate() {
     } else {
         circleElement.style.stroke = "#00e5ff";
     }
+
+    // Auto-save on every calculation (which triggers on input)
+    saveData();
 }
 
 function saveData() {
