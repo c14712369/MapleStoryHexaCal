@@ -1,106 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>楓之谷六轉進度計算器</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="index.css">
-    <script src="index.js" defer></script>
+    <!-- Load data first -->
+    <script src="js/data.js"></script>
+    <!-- Load main logic -->
+    <script src="js/index.js" defer></script>
 </head>
 
 <body>
-    <div class="BigCon">
-        <div class="SmallCon">
-            <label><span class="red-text">起源</span>核心：等級</label>
-            <input id="skillInput" type="number" min="1" value="1"><br>
-            <label>消耗碎片數量：</label>
-            <span id="skillSum"></span>
-            <label><br>距離滿等還缺：</label>
-            <span id="skillNeed"></span><label>個碎片</label><br>
-        </div>
-        <div class="SmallCon">
-            <label><span class="red-text">精通</span>核心1：等級</label>
-            <input id="jinton1Input" type="number" min="0" value="0"><br>
-            <label>消耗碎片數量：</label>
-            <span id="jinton1Sum"></span>
-            <label><br>距離滿等還缺：</label>
-            <span id="jinton1Need"></span><label>個碎片</label><br>
-        </div>
-        <div class="SmallCon">
-            <label><span class="red-text">精通</span>核心2：等級</label>
-            <input id="jinton2Input" type="number" min="0" value="0"><br>
-            <label>消耗碎片數量：</label>
-            <span id="jinton2Sum"></span>
-            <label><br>距離滿等還缺：</label>
-            <span id="jinton2Need"></span><label>個碎片</label><br>
-        </div>
-        <div class="SmallCon">
-            <label><span class="red-text">強化</span>核心1：等級</label>
-            <input id="strong1Input" type="number" min="0" value="0"><br>
-            <label>消耗碎片數量：</label>
-            <span id="strong1Sum"></span>
-            <label><br>距離滿等還缺：</label>
-            <span id="strong1Need"></span><label>個碎片</label><br>
-        </div>
-        <div class="SmallCon">
-            <label><span class="red-text">強化</span>核心2：等級</label>
-            <input id="strong2Input" type="number" min="0" value="0"><br>
-            <label>消耗碎片數量：</label>
-            <span id="strong2Sum"></span>
-            <label><br>距離滿等還缺：</label>
-            <span id="strong2Need"></span><label>個碎片</label><br>
-        </div>
-        <div class="SmallCon">
-            <label><span class="red-text">強化</span>核心3：等級</label>
-            <input id="strong3Input" type="number" min="0" value="0"><br>
-            <label>消耗碎片數量：</label>
-            <span id="strong3Sum"></span>
-            <label><br>距離滿等還缺：</label>
-            <span id="strong3Need"></span><label>個碎片</label><br>
-        </div>
-        <div class="SmallCon">
-            <label><span class="red-text">強化</span>核心4：等級</label>
-            <input id="strong4Input" type="number" min="0" value="0"><br>
-            <label>消耗碎片數量：</label>
-            <span id="strong4Sum"></span>
-            <label><br>距離滿等還缺：</label>
-            <span id="strong4Need"></span><label>個碎片</label><br>
-        </div>
-        <div class="SmallCon">
-            <label><span class="red-text">共用</span>核心1：等級</label>
-            <input id="public1Input" type="number" min="0" value="0"><br>
-            <label>消耗碎片數量：</label>
-            <span id="public1Sum"></span>
-            <label><br>距離滿等還缺：</label>
-            <span id="public1Need"></span><label>個碎片</label><br>
-        </div>
+    <div class="background-animation"></div>
 
-        <div class="SmallCon">
-            <label>是否將亞努斯納入計算</label>
-            <input type="checkbox" id="anusCheck" name="anusCheck" value="yes">
-        </div>
+    <main class="app-container">
+        <header class="glass-panel">
+            <h1>HEXA MATRIX <span class="subtitle">CALCULATOR</span></h1>
+            <button id="settingsBtn" class="icon-btn" onclick="toggleSettingsModal()">
+                ⚙️ 設定
+            </button>
+        </header>
 
-        <div class="bottom">
-            <button onclick="calculate()">計算</button>
-            <div style="margin-bottom: 10px;">
-                <label>碎片進度：</label>
-                <progress value="0" id="vvv"></progress>
-                <span id="totalPersent" class="red-text"></span><label> %</label>
+        <!-- Stats Overview (Hero) -->
+        <section class="stats-overview glass-panel">
+            <div class="stat-circle">
+                <svg viewBox="0 0 36 36" class="circular-chart">
+                    <path class="circle-bg"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle" id="progress-circle" stroke-dasharray="0, 100"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <text x="18" y="20.35" class="percentage" id="totalPersent">0%</text>
+                </svg>
+                <div class="stat-label">總進度</div>
             </div>
-            <div style="margin-bottom: 10px;">
-                <label>碎片總消耗量：</label>
-                <span id="totalUsed" class="red-text"></span><label> 個</label>
+            <div class="stat-details">
+                <div class="stat-item">
+                    <span class="label">已消耗碎片</span>
+                    <span class="value" id="totalUsed">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">還需碎片</span>
+                    <span class="value highlight" id="totalNeed">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">1% 所需</span>
+                    <span class="value" id="onePersentNeed">0</span>
+                </div>
             </div>
-            <div style="margin-bottom: 10px;">
-                <label>還需碎片數量：</label>
-                <span id="totalNeed" class="red-text"></span><label> 個</label><br>
+        </section>
+
+        <!-- Cores Grid -->
+        <section id="coresContainer" class="cores-grid">
+            <!-- Dynamic Content -->
+        </section>
+
+    </main>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2>核心設定</h2>
+                <span class="close" onclick="toggleSettingsModal()">&times;</span>
             </div>
-            <div>
-                <label><span>進度1%</span>所需碎片數量：</label>
-                <span id="onePersentNeed" class="red-text"></span><label> 個</label><br>
+            <div class="modal-body" id="settingsContainer">
+                <!-- Dynamic Checkboxes -->
+            </div>
+            <div class="modal-footer">
+                <p class="hint">勾選以啟用/停用核心</p>
+                <button class="save-btn" onclick="toggleSettingsModal()">完成</button>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
